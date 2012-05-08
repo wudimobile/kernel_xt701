@@ -1094,7 +1094,7 @@ static unsigned long omap3_clkoutx2_recalc(struct clk *clk)
 #if defined(CONFIG_ARCH_OMAP3)
 
 #ifdef CONFIG_CPU_FREQ
-static struct cpufreq_frequency_table freq_table[VDD1_OPP6+1];
+static struct cpufreq_frequency_table freq_table[VDD1_OPP7+1];
 
 void omap2_clk_init_cpufreq_table(struct cpufreq_frequency_table **table)
 {
@@ -1104,7 +1104,7 @@ void omap2_clk_init_cpufreq_table(struct cpufreq_frequency_table **table)
 	if (!mpu_opps)
 		return;
 
-	prcm = mpu_opps + MAX_VDD1_OPP - 1;
+	prcm = mpu_opps + MAX_VDD1_OPP;
 	for (; prcm->rate; prcm--) {
 		freq_table[i].index = i;
 		freq_table[i].frequency = prcm->rate / 1000;
