@@ -35,7 +35,7 @@ on init
     mkdir /data/download 0775 system system
     mkdir /data/download/mystuff 0775 system system
 
-    write /dev/usb_device_mode msc_adb
+    # write /dev/usb_device_mode msc_adb
 
     chmod 0660 /dev/mtp
     chmod 0660 /dev/ttyGS0
@@ -118,7 +118,8 @@ on boot
     mkdir /cache/logger 0770 radio log
     chown radio log /cache/logger
     chmod 0770 /cache/logger
-    exec /system/bin/sh /system/bin/init_mount_logger.sh
+    exec /system/bin/sh /system/bin/init_early_bind_mounts.sh
+    exec /system/bin/sh /system/bin/init_bp_nvm.sh
 
     mkdir /pds/lost+found 0770
     chown root root /pds/lost+found
@@ -192,10 +193,8 @@ on boot
 
     write /sys/devices/platform/ohci.0/usb2/2-3/power/level auto
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 250000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 720000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq 800000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold 86
-    write /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate 46875
     write /sys/module/wakelock/parameters/debug_mask 7
 
     write /sys/power/sr_vdd1_autocomp 1
