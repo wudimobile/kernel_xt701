@@ -1,0 +1,3 @@
+bfs : http://ck.kolivas.org/patches/bfs/2.6.32/2.6.32.40-sched-bfs-404.patch
+uksm : http://kerneldedup.org/download/uksm/0.1.1.2/uksm-0.1.1.2-for-v2.6.38.ge.8.patch
+
