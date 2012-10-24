@@ -359,7 +359,7 @@ CONFIG_ALIGNMENT_TRAP=y
 #
 CONFIG_ZBOOT_ROM_TEXT=0x0
 CONFIG_ZBOOT_ROM_BSS=0x0
-CONFIG_CMDLINE="console=ttyS2,115200n8 console=ttyMTD10 rw mem=244M@0x80C00000 vram=4M omapfb.vram=0:4M init=/init ip=off brdrev=P3_TABLET_CU androidboot.bootloader=80.91 androidboot.hardware=choles mtdparts=omap2-nand.0:1536k@2176k(pds),384k@4480k(cid),384k@7424k(misc),3584k(boot)ro,4608k@15232k(recovery),8960k(cdrom),179840k@29184k(system),106m@209408k(cache),199m(userdata),2m(kpanic)"
+CONFIG_CMDLINE="console=/dev/null console=ttyMTD10 rw mem=244M@0x80C00000 vram=4M omapfb.vram=0:4M init=/init ip=off brdrev=P3_TABLET_CU androidboot.bootloader=80.91 androidboot.hardware=choles mtdparts=omap2-nand.0:1536k@2176k(pds),384k@4480k(cid),384k@7424k(misc),3584k(boot)ro,4608k@15232k(recovery),8960k(cdrom),179840k@29184k(system),106m@209408k(cache),199m(userdata),2m(kpanic)"
 # CONFIG_XIP_KERNEL is not set
 # CONFIG_KEXEC is not set
 
@@ -386,7 +386,7 @@ CONFIG_CPU_FREQ_GOV_USERSPACE=y
 # CONFIG_CPU_FREQ_GOV_LAGFREE is not set
 # CONFIG_CPU_FREQ_GOV_SMARTASS is not set
 CONFIG_CPU_FREQ_GOV_INTERACTIVE=y
-CONFIG_CPU_FREQ_GOV_INTERACTIVEX=y
+# CONFIG_CPU_FREQ_GOV_INTERACTIVEX is not set
 CONFIG_CPU_FREQ_GOV_ONDEMAND=y
 CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
 CONFIG_CPU_IDLE=y
@@ -1676,8 +1676,8 @@ CONFIG_USB_SERIAL=y
 # CONFIG_USB_SERIAL_MCT_U232 is not set
 # CONFIG_USB_SERIAL_MOS7720 is not set
 # CONFIG_USB_SERIAL_MOS7840 is not set
-CONFIG_USB_SERIAL_MOTOROLA=y
-CONFIG_USB_QSC6085_CDMA_MODEM=y
+# CONFIG_USB_SERIAL_MOTOROLA is not set
+# CONFIG_USB_QSC6085_CDMA_MODEM is not set
 # CONFIG_USB_SERIAL_NAVMAN is not set
 # CONFIG_USB_SERIAL_PL2303 is not set
 # CONFIG_USB_SERIAL_OTI6858 is not set
