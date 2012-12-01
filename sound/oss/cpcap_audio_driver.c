@@ -1112,14 +1112,14 @@ static void cpcap_audio_register_dump(struct cpcap_audio_state *state)
 	cpcap_regacc_read(state->cpcap, CPCAP_REG_RXLL, &reg_val[i++]);
 	cpcap_regacc_read(state->cpcap, CPCAP_REG_A2LA, &reg_val[i++]);
 
-	printk(KERN_DEBUG  " 0x200 = %x\n 0x201 = %x\n 0x202 = %x\n"
+	/*printk(KERN_DEBUG  " 0x200 = %x\n 0x201 = %x\n 0x202 = %x\n"
 		" 0x203 = %x\n 0x204 = %x\n 0x205 = %x\n 0x206 = %x\n"
 		" 0x207 = %x\n 0x208 = %x\n 0x209 = %x\n 0x20A = %x\n"
 		" 0x20B = %x\n 0x20C = %x\n 0x20D = %x\n", reg_val[0],
 		reg_val[1], reg_val[2], reg_val[3], reg_val[4],
 		reg_val[5], reg_val[6], reg_val[7], reg_val[8],
 		reg_val[9], reg_val[10], reg_val[11], reg_val[12],
-		reg_val[13]);
+		reg_val[13]);*/
 
 }
 
