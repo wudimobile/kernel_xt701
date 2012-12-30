@@ -994,7 +994,7 @@ void __init mapphone_sensors_init(void)
 #ifdef CONFIG_INPUT_ALS_IR_ISL29030
 	mapphone_isl29030_init();
 #endif
-	mapphone_hall_effect_init();
+	//mapphone_hall_effect_init();
 	mapphone_akm8973_init();
 #ifdef CONFIG_SENSORS_AIRC
 	mapphone_airc_init();
