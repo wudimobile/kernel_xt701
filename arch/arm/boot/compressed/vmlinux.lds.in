@@ -54,6 +54,7 @@ SECTIONS
   .bss			: { *(.bss) }
   _end = .;
 
+  . = ALIGN(8);
   .stack (NOLOAD)	: { *(.stack) }
 
   .stab 0		: { *(.stab) }

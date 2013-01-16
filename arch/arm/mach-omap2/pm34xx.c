@@ -1306,7 +1306,7 @@ static int __init omap3_pm_init(void)
 	if (!cpu_is_omap34xx())
 		return -ENODEV;
 
-	printk(KERN_ERR "Power Management for TI OMAP3.\n");
+	pr_info("Power Management for TI OMAP3.\n");
 
 	/* XXX prcm_setup_regs needs to be before enabling hw
 	 * supervised mode for powerdomains */

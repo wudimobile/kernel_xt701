@@ -183,4 +183,3 @@ static inline int rwsem_is_locked(struct rw_semaphore *sem)
 
 #endif /* __KERNEL__ */
 #endif /* _ASM_ARM_RWSEM_H */
-

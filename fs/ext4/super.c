@@ -39,6 +39,7 @@
 #include <linux/ctype.h>
 #include <linux/log2.h>
 #include <linux/crc16.h>
+#include <linux/cleancache.h>
 #include <asm/uaccess.h>
 
 #include "ext4.h"
@@ -1684,7 +1685,7 @@ static int ext4_setup_super(struct super_block *sb, struct ext4_super_block *es,
 			EXT4_BLOCKS_PER_GROUP(sb),
 			EXT4_INODES_PER_GROUP(sb),
 			sbi->s_mount_opt);
-
+	cleancache_init_fs(sb);
 	return res;
 }
 
@@ -1715,12 +1716,12 @@ static int ext4_fill_flex_info(struct super_block *sb)
 	if (sbi->s_flex_groups == NULL) {
 		sbi->s_flex_groups = vmalloc(size);
 		if (sbi->s_flex_groups)
-			memset(sbi->s_flex_groups, 0, size);
+	  	  memset(sbi->s_flex_groups, 0, size);
 	}
 	if (sbi->s_flex_groups == NULL) {
-		ext4_msg(sb, KERN_ERR, "not enough memory for "
-				"%u flex groups", flex_group_count);
-		goto failed;
+	 	   ext4_msg(sb, KERN_ERR, "not enough memory for "
+			"%u flex groups", flex_group_count);
+	   	 goto failed;
 	}
 
 	for (i = 0; i < sbi->s_groups_count; i++) {

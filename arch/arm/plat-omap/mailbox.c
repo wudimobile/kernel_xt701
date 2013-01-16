@@ -30,6 +30,7 @@
 
 static struct omap_mbox *mboxes;
 static DEFINE_RWLOCK(mboxes_lock);
+static bool rq_full;
 
 static int mbox_configured;
 

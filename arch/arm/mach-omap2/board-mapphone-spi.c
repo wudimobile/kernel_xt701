@@ -201,6 +201,7 @@ static struct regulator_init_data cpcap_regulator[CPCAP_NUM_REGULATORS] = {
 		.num_consumer_supplies	= ARRAY_SIZE(cpcap_sw5_consumers),
 		.consumer_supplies	= cpcap_sw5_consumers,
 	},
+	// Should be Camera... Default was 2900000 (min, max)
 	[CPCAP_VCAM] = {
 		.constraints = {
 			.min_uV			= 2800000,
@@ -248,10 +249,11 @@ static struct regulator_init_data cpcap_regulator[CPCAP_NUM_REGULATORS] = {
 		.num_consumer_supplies  = ARRAY_SIZE(cpcap_vfuse_consumers),
 		.consumer_supplies      = cpcap_vfuse_consumers,
 	},
+	// should be Display, Orginal: 2775000(min, max)
 	[CPCAP_VHVIO] = {
 		.constraints = {
-			.min_uV			= 2775000,
-			.max_uV			= 2775000,
+			.min_uV			= 2675000,
+			.max_uV			= 2675000,
 			.valid_ops_mask		= REGULATOR_CHANGE_STATUS,
 			.always_on		= 1,
 			.apply_uV		= 1,

@@ -169,7 +169,7 @@ static struct omap_opp mapphone_omap3430_mpu_rate_table[] = {
 	/*OPP5*/
 	{S600M, VDD1_OPP5, 0x3E, 0x0},
 	/*OPP6*/
-	{S800M, VDD1_OPP6, 0x3E, 0x0},
+	{S800M, VDD1_OPP6, 0x4E, 0x0},
 };
 
 #define S80M 80000000
@@ -713,14 +713,14 @@ static void mapphone_touch_init(void)
 	const void *touch_prop;
 	int len = 0;
 	const uint32_t *touch_val;
-
+#ifndef CONFIG_KOBE_BOARD
 	if ((touch_node = of_find_node_by_path(DT_PATH_TOUCH))) {
 		if ((touch_prop = of_get_property(touch_node, DT_PROP_TOUCH_KEYMAP, &len)) \
 			&& len && (0 == len % sizeof(struct vkey))) {
 			mapphone_ts_platform_data.vkeys.count = len / sizeof(struct vkey);
 			mapphone_ts_platform_data.vkeys.keys = (struct vkey *)touch_prop;
 		}
-
+#endif
 		if ((touch_prop = of_get_property(touch_node, DT_PROP_TOUCH_I2C_ADDRESS, &len))) {
 			mapphone_i2c_bus1_master_board_info[0].addr =
 				*((int *)touch_prop);
@@ -777,7 +777,7 @@ static void mapphone_touch_init(void)
 		touch_val = of_get_property(touch_node, DT_PROP_TOUCH_FUZZ_W, &len);
 		if (touch_val && len)
 			mapphone_ts_platform_data.fuzz_w = *touch_val;
-
+#ifndef CONFIG_KOBE_BOARD
 		if ((touch_prop = of_get_property(touch_node, DT_PROP_TOUCH_T15, &len))) {
 			mapphone_ts_platform_data.key_array.cfg = (struct qtm_touch_keyarray_cfg *)touch_prop;
 		}
@@ -789,7 +789,7 @@ static void mapphone_touch_init(void)
 		touch_val = of_get_property(touch_node, DT_PROP_TOUCH_KEY_ARRAY_COUNT, &len);
 		if (touch_val && len)
 			mapphone_ts_platform_data.key_array.num_keys = *touch_val;
-
+#endif
 		if ((touch_prop = of_get_property(touch_node, DT_PROP_TOUCH_T7, &len))) {
 			mapphone_ts_platform_data.power_cfg = *(struct qtm_gen_power_cfg *)touch_prop;
 		}
@@ -1020,7 +1020,7 @@ static void mapphone_als_init(void)
 	gpio_direction_input(lm3530_int_gpio);
 	omap_cfg_reg(AC27_34XX_GPIO92);
 }
-
+#ifndef CONFIG_KOBE_BOARD
 static struct vkey mapphone_touch_vkeys[] = {
 	{
 		.code		= KEY_BACK,
@@ -1051,7 +1051,31 @@ static struct vkey mapphone_touch_vkeys[] = {
 		.height		= 57,
 	},
 };
-
+#else
+static struct vkey mapphone_touch_vkeys[] = {
+	{
+		.code		= KEY_BACK,
+		.center_x	= 376,
+		.center_y	= 906,
+		.width		= 36,
+		.height		= 57,
+	},
+	{
+		.code		= KEY_MENU,
+		.center_x	= 104,
+		.center_y	= 906,
+		.width		= 36,
+		.height		= 57,
+	},
+	{
+		.code		= KEY_HOME,
+		.center_x	= 240,
+		.center_y	= 906,
+		.width		= 36,
+		.height		= 57,
+	},
+	};
+#endif
 static struct qtm_touch_keyarray_cfg mapphone_key_array_data[] = {
 	{
 		.ctrl		= 0,
@@ -1384,10 +1408,12 @@ static struct i2c_board_info __initdata
 		I2C_BOARD_INFO("akm8973", 0x1C),
 		.irq = OMAP_GPIO_IRQ(MAPPHONE_AKM8973_INT_GPIO),
 	},
+#ifdef CONFIG_SENSORS_LIS331DLH
 	{
 		I2C_BOARD_INFO("lis331dlh", 0x19),
 		.platform_data = &mapphone_lis331dlh_data,
 	},
+#endif
 	{
 		I2C_BOARD_INFO("kxtf9", 0x0F),
 		.platform_data = &mapphone_kxtf9_data,
@@ -2167,7 +2193,7 @@ static void mapphone_pm_init(void)
 		mapphone_pm_set_reset(0);
 #else
 	/* set cold reset, will move to warm reset once ready */
-	mapphone_pm_set_reset(1);
+	mapphone_pm_set_reset(0);
 #endif
 	register_reboot_notifier(&mapphone_pm_reboot_notifier);
 }
