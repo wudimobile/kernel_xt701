@@ -128,17 +128,17 @@ extern struct cred init_cred;
 	.lock_depth	= -1,						\
 	.prio		= MAX_PRIO-20,					\
 	.static_prio	= MAX_PRIO-20,					\
-	.normal_prio	= MAX_PRIO-20,				\
+	.normal_prio	= MAX_PRIO-20,					\
 	.policy		= SCHED_NORMAL,					\
 	.cpus_allowed	= CPU_MASK_ALL,					\
 	.mm		= NULL,						\
 	.active_mm	= &init_mm,					\
-  	.se    = {							\
-	.group_node   = LIST_HEAD_INIT(tsk.se.group_node),		\
+	.se		= {						\
+		.group_node 	= LIST_HEAD_INIT(tsk.se.group_node),	\
 	},								\
-		.rt    = {						\
-		.run_list  = LIST_HEAD_INIT(tsk.rt.run_list),		\
-		.time_slice  = HZ,					\
+	.rt		= {						\
+		.run_list	= LIST_HEAD_INIT(tsk.rt.run_list),	\
+		.time_slice	= HZ, 					\
 		.nr_cpus_allowed = NR_CPUS,				\
 	},								\
 	.tasks		= LIST_HEAD_INIT(tsk.tasks),			\

@@ -524,6 +524,10 @@ void putback_lru_page(struct page *page)
 	int was_unevictable = PageUnevictable(page);
 
 	VM_BUG_ON(PageLRU(page));
+#ifdef CONFIG_CLEANCACHE
+	if (active)
+		SetPageWasActive(page);
+#endif
 
 redo:
 	ClearPageUnevictable(page);
@@ -686,6 +690,16 @@ static unsigned long shrink_page_list(struct list_head *page_list,
 		}
 
 		if (PageDirty(page)) {
+
+			/*
+			 * Only kswapd can writeback filesystem pages to
+			 * avoid risk of stack overflow
+			 */
+			if (page_is_file_cache(page) && !current_is_kswapd()) {
+				inc_zone_page_state(page, NR_VMSCAN_WRITE_SKIP);
+				goto keep_locked;
+			}
+
 			if (sc->order <= PAGE_ALLOC_COSTLY_ORDER && referenced)
 				goto keep_locked;
 			if (!may_enter_fs)
@@ -1005,6 +1019,9 @@ static unsigned long clear_active_flags(struct list_head *page_list,
 			lru += LRU_ACTIVE;
 			ClearPageActive(page);
 			nr_active++;
+#ifdef CONFIG_CLEANCACHE
+			SetPageWasActive(page);
+#endif
 		}
 		count[lru]++;
 	}
@@ -1373,6 +1390,9 @@ static void shrink_active_list(unsigned long nr_pages, struct zone *zone,
 		}
 
 		ClearPageActive(page);	/* we are de-activating */
+#ifdef CONFIG_CLEANCACHE
+		SetPageWasActive(page);
+#endif
 		list_add(&page->lru, &l_inactive);
 	}
 

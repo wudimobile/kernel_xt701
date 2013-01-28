@@ -330,7 +330,6 @@ static inline void outer_flush_range(unsigned long start, unsigned long end)
 /*
  * Convert calls to our calling convention.
  */
-
 #define flush_cache_all()		__cpuc_flush_kern_all()
 #ifndef CONFIG_CPU_CACHE_VIPT
 static inline void flush_cache_mm(struct mm_struct *mm)

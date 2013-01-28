@@ -59,16 +59,17 @@ EXPORT_SYMBOL_GPL(inet6_csk_bind_conflict);
 static u32 inet6_synq_hash(const struct in6_addr *raddr, const __be16 rport,
 			   const u32 rnd, const u16 synq_hsize)
 {
+	
 	u32 c;
 
 	c = jhash_3words((__force u32)raddr->s6_addr32[0],
-		(__force u32)raddr->s6_addr32[1],
-		(__force u32)raddr->s6_addr32[2],
-		rnd);
-	
+			 (__force u32)raddr->s6_addr32[1],
+			 (__force u32)raddr->s6_addr32[2],
+			 rnd);
+
 	c = jhash_2words((__force u32)raddr->s6_addr32[3],
-		(__force u32)rport,
-		c);
+			 (__force u32)rport,
+			 c);
 
 	return c & (synq_hsize - 1);
 }

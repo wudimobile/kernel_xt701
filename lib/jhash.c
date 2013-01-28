@@ -26,8 +26,8 @@
 #include <linux/jhash.h>
 
 /* __jhash_mix -- mix 3 32-bit values reversibly. */
-#define __jhash_mix(a, b, c)	\
-{	\
+#define __jhash_mix(a, b, c)			\
+{						\
 	a -= c;  a ^= rol32(c, 4);  c += b;	\
 	b -= a;  b ^= rol32(a, 6);  a += c;	\
 	c -= b;  c ^= rol32(b, 8);  b += a;	\
@@ -78,12 +78,12 @@ u32 jhash(const void *key, u32 length, u32 initval)
 	case 3:  a += (u32)k[2]<<16;
 	case 2:  a += (u32)k[1]<<8;
 	case 1:  a += k[0];
-		__jhash_final(a, b, c);
+		 __jhash_final(a, b, c);
 	case 0: /* Nothing left to add */
 		break;
 	}
 
-	return c;	
+	return c;
 }
 EXPORT_SYMBOL(jhash);
 
@@ -109,7 +109,7 @@ u32 jhash2(const u32 *k, u32 length, u32 initval)
 		__jhash_mix(a, b, c);
 		length -= 3;
 		k += 3;
-	}	
+	}
 
 	/* Handle the last 3 u32's: all the case statements fall through */
 	switch (length) {
@@ -117,11 +117,11 @@ u32 jhash2(const u32 *k, u32 length, u32 initval)
 	case 2: b += k[1];
 	case 1: a += k[0];
 		__jhash_final(a, b, c);
-	case 0:  /* Nothing left to add */
+	case 0:	/* Nothing left to add */
 		break;
 	}
 
 	return c;
-}	
+}
 EXPORT_SYMBOL(jhash2);
 

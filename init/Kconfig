@@ -465,7 +465,7 @@ config HAVE_UNSTABLE_SCHED_CLOCK
 
 config GROUP_SCHED
 	bool "Group CPU scheduler"
-	depends on EXPERIMENTAL && CGROUPS
+	depends on EXPERIMENTAL
 	default n
 	help
 	  This feature lets CPU scheduler recognize task groups and control CPU
@@ -639,7 +639,7 @@ endif # CGROUPS
 config SCHED_AUTOGROUP
 	bool "Automatic process group scheduling"
 	select CGROUPS
-	select GROUP_SCHED
+	select CGROUP_SCHED
 	select FAIR_GROUP_SCHED
 	help
 	  This option optimizes the scheduler for common desktop workloads by

@@ -42,7 +42,6 @@
 #include <linux/lockdep.h>
 #include <linux/completion.h>
 
-
 /* Exported common interfaces */
 #ifdef CONFIG_TREE_PREEMPT_RCU
 extern void synchronize_rcu(void);

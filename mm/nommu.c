@@ -296,6 +296,7 @@ void *vmalloc(unsigned long size)
 {
        return __vmalloc(size, GFP_KERNEL | __GFP_HIGHMEM, PAGE_KERNEL);
 }
+EXPORT_SYMBOL(vmalloc);
 
 void *vmalloc_node(unsigned long size, int node)
 {

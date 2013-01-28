@@ -1738,7 +1738,7 @@ int e1000e_setup_rx_resources(struct e1000_adapter *adapter)
 	rx_ring->buffer_info = vmalloc(size);
 	if (!rx_ring->buffer_info)
 		goto err;
-	memset(tx_ring->buffer_info, 0, size);
+	memset(rx_ring->buffer_info, 0, size);
 
 	for (i = 0; i < rx_ring->count; i++) {
 		buffer_info = &rx_ring->buffer_info[i];

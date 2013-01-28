@@ -35,6 +35,10 @@
 #include <linux/hardirq.h>
 #include "internal.h"
 
+/* Variable controls the tendency of the kernel to reclaim the memory
+ * which is used for caching of VFS caches, versus pagecache and swap.
+ * Increase it = increase the rate at which caches are reclaimed
+*/
 int sysctl_vfs_cache_pressure __read_mostly = 60;
 EXPORT_SYMBOL_GPL(sysctl_vfs_cache_pressure);
 

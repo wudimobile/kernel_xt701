@@ -111,7 +111,7 @@
 #define OMAP2_MCSPI_MODE_IS_SLAVE	1
 #define OMAP_MCSPI_WAKEUP_ENABLE	1
 
-#define OMAP_MCSPI_BASE                 IO_ADDRESS(0x48098000)
+#define OMAP_MCSPI_BASE                 OMAP2_L4_IO_ADDRESS(0x48098000)
 
 #define WORD_LEN            32
 #define CLOCK_DIV           12	/* 2^(12)=4096  48000000/4096<19200 */
@@ -121,8 +121,8 @@
 #define WRITE_CPCAP         1
 #define READ_CPCAP          0
 
-#define CM_ICLKEN1_CORE  IO_ADDRESS(0x48004A10)
-#define CM_FCLKEN1_CORE  IO_ADDRESS(0x48004A00)
+#define CM_ICLKEN1_CORE  OMAP2_L4_IO_ADDRESS(0x48004A10)
+#define CM_FCLKEN1_CORE  OMAP2_L4_IO_ADDRESS(0x48004A00)
 #define OMAP2_MCSPI_EN_MCSPI1   (1 << 18)
 
 #define  RESET_FAIL      1
@@ -567,7 +567,7 @@ void activate_emu_uart(void)
 
 	emu_uart_is_active = TRUE;
 	printk
-	    (KERN_ALERT "WARNING: MiniUSB port works in UART3 mode,"
+	    (KERN_ALERT "WARNING: MiniUSB port works in UART3 mode, "
 	     "the USB functionality UNAVAILABLE!\n");
 
 }

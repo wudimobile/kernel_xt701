@@ -190,7 +190,7 @@ compute_qlen(u16 *qlen_r, u16 *prob_r, struct sfb_sched_data *q)
                 for(j = 0; j < q->numbuckets; j++) {
                         if(qlen < q->buckets[filter][i][j].qlen)
                                 qlen = q->buckets[filter][i][j].qlen;
-                        if(prob < q->buckets[filter][i][j].pm)
+                        if(qlen < q->buckets[filter][i][j].pm)
                                 prob = q->buckets[filter][i][j].pm;
                 }
         }
@@ -655,4 +655,3 @@ module_exit(sfb_module_exit)
 MODULE_DESCRIPTION("Stochastic Fair Blue queue discipline");
 MODULE_AUTHOR("Juliusz Chroboczek");
 MODULE_LICENSE("GPL");
-

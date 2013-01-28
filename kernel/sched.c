@@ -122,7 +122,7 @@
 
 static inline int rt_policy(int policy)
 {
-	if (unlikely(policy == SCHED_FIFO || policy == SCHED_RR))
+	if (policy == SCHED_FIFO || policy == SCHED_RR)
 		return 1;
 	return 0;
 }
@@ -2451,7 +2451,7 @@ out_running:
 	if (p->sched_class->task_wake_up)
 		p->sched_class->task_wake_up(rq, p);
 
-	if (unlikely(rq->idle_stamp)) {
+	if (rq->idle_stamp) {
 		u64 delta = rq->clock - rq->idle_stamp;
 		u64 max = 2*sysctl_sched_migration_cost;
 
@@ -9179,7 +9179,7 @@ static int update_sched_domains(struct notifier_block *nfb,
 				unsigned long action, void *hcpu)
 {
 	switch (action) {
-	case CPU_ONLINE:
+	case CPU_STARTING:
 	case CPU_ONLINE_FROZEN:
 	case CPU_DOWN_PREPARE:
 	case CPU_DOWN_PREPARE_FROZEN:

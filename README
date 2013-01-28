@@ -1,3 +1,13 @@
+How to enable/disable FSync?
+
+	Type in Terminal: echo 1 > /sys/class/misc/fsynccontrol/fsync_enabled 
+	(1 = enabled (stability), 0 = disabled (default, performance))
+
+How to enable/disable Dynamic FSync?
+
+	Type in Terminal: echo 1 > /sys/kernel/dyn_fsync/Dyn_fsync_active 
+	(1 = enabled (default), 0 = disabled)
+
 	Linux kernel release 2.6.xx <http://kernel.org/>
 
 These are the release notes for Linux version 2.6.  Read them carefully,

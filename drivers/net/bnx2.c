@@ -764,7 +764,7 @@ bnx2_alloc_rx_mem(struct bnx2 *bp)
 			return -ENOMEM;
 
 		memset(rxr->rx_buf_ring, 0,
-			SW_RXBD_RING_SIZE * bp->rx_max_ring);
+		       SW_RXBD_RING_SIZE * bp->rx_max_ring);
 
 		for (j = 0; j < bp->rx_max_ring; j++) {
 			rxr->rx_desc_ring[j] =
@@ -781,8 +781,8 @@ bnx2_alloc_rx_mem(struct bnx2 *bp)
 			if (rxr->rx_pg_ring == NULL)
 				return -ENOMEM;
 
-		memset(rxr->rx_pg_ring, 0, SW_RXPG_RING_SIZE *
-			bp->rx_max_pg_ring);
+			memset(rxr->rx_pg_ring, 0, SW_RXPG_RING_SIZE *
+			       bp->rx_max_pg_ring);
 		}
 
 		for (j = 0; j < bp->rx_max_pg_ring; j++) {
