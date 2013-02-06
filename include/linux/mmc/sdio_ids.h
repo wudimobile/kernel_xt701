@@ -44,4 +44,5 @@
 
 #define SDIO_VENDOR_ID_TI 		 			0x104c
 #define SDIO_DEVICE_ID_TI_WL12xx 			0x9066
+
 #endif

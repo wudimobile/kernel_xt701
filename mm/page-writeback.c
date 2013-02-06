@@ -422,7 +422,7 @@ get_dirty_limits(unsigned long *pbackground, unsigned long *pdirty,
 {
 	unsigned long background;
 	unsigned long dirty;
-	unsigned long uninitialized_var(available_memory);
+	unsigned long available_memory = determine_dirtyable_memory();
 	struct task_struct *tsk;
 
 	if (vm_dirty_bytes)

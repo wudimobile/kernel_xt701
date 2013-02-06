@@ -46,4 +46,3 @@ obj-$(CONFIG_MODEM_PM_DRIVER)   += modem_pm_driver/
 obj-$(CONFIG_NETMUX_DRIVER)     += netmux/
 obj-$(CONFIG_SYSPANIC)		+= syspanic.o
 obj-$(CONFIG_FSYNC_CONTROL)	+= fsync_control.o
-obj-$(CONFIG_SMOOTHUI)		+= smooth_ui.o
